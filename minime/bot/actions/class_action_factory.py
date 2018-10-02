@@ -16,14 +16,18 @@ class Action_Factory:
 
         self.__a_providers.update({ tag: action_provider })
 
-    def run_action(self, tag, tokens, answers):
+    def run_action(self, session, tag, context, tokens, answers, sentense):
        ap = self.__a_providers.get(tag)
        if ap is None:
            return random.choice(answers)
 
        return ap.run(
            tokens = tokens,
-           answers = answers
+           answers = answers,
+           session = session,
+           tag = tag,
+           context = context,
+           sentense = sentense
        )
 
 

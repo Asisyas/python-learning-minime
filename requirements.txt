@@ -3,3 +3,5 @@ tflearn >= 0.3.2
 nltk >= 3.3
 requests >= 2.19.1
 python-jenkins
+gitpython
+python-gitlab >= 1.6.0
