@@ -10,11 +10,10 @@ class Action_Environment(ba.Base_Action):
     __branch = None
     __brand = None
     __env = None
-    __syncronizeDb = None
+    __synchronize_db = None
     __debugEnable = False
 
     __state: None
-
 
     def __init__(self):
         self.__build_pr_conf = env.get_section('BUILD_PR')
@@ -29,13 +28,12 @@ class Action_Environment(ba.Base_Action):
 
         return self._run_jenkins_job()
 
-
     def _prepare(self):
-        if(self.__branch is None):
+        if self.__branch is None:
             return 'Какой бранч заюзать ?'
-        if(self.__env is None):
+        if self.__env is None:
             return 'На какой энвайрмент ?'
-        if(self.__syncronizeDb is None):
+        if self.__synchronize_db is None:
             return 'базу синкануть ?'
 
         return True
@@ -43,10 +41,10 @@ class Action_Environment(ba.Base_Action):
     def _run_jenkins_job(self):
         act = self.__build_pr_conf['JOB_NAME']
 
-        jnkns.jenkins_api.build_job( act, {
+        jnkns.jenkins_api.build_job(act, {
             'branch': self.__branch,
             'developer': self.__env,
             'brand': self.__brand,
-            'syncronizeDb': self.__syncronizeDb,
+            'syncronizeDb': self.__synchronize_db,
             'debugEnabled': self.__debugEnable
-        } )
+        })

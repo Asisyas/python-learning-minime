@@ -30,7 +30,7 @@ model.load('./brain_data/model.tflearn')
 # create a data structure to hold user context
 context = {}
 
-ERROR_THRESHOLD = 0.25
+ERROR_THRESHOLD = 0.6
 
 
 def clean_up_sentence(sentence):
@@ -72,7 +72,6 @@ def classify(sentence):
     return return_list
 
 def response(sentence, userID='123', show_details=False):
-    global intents
     results = classify(sentence)
 
     # if we have a classification then find the matching intent tag
